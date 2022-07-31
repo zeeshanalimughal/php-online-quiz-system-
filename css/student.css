@@ -1,0 +1,183 @@
+*{
+    margin: 0 ;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    list-style: none !important;
+    text-decoration: none !important;
+}
+a{
+    color: #fff !important;
+  }
+  .navbar-student{
+    background: linear-gradient(to right,#880E4F,#AD1457);
+  }
+
+.child-navbar{
+    background: linear-gradient(135deg,#EC407A,#F06292);
+}
+ .sub-nav-menu{
+    background: linear-gradient(to right,#880E4F,#880E4F);  
+    padding:10px;
+    border-radius: 5px;
+}
+:root{
+    --color-dark-green:#9E9E9E;
+    --dark-blue:#E91E63;
+}
+
+.options .radio_buttons{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: start;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+   margin-right: 1rem;
+}
+.options .radio_buttons .btn_single{
+    display: flex;
+    margin:.5rem;
+    align-items: center;
+    border-radius: 5px;
+}
+.options .radio_buttons .btn_single input[type="radio"]{
+   display: none;
+}
+.options .radio_buttons .btn_single label{
+padding: 8px 15px;
+font-size: 16px;
+border-radius: 5px;
+background: var(--color-dark-green);
+color: #fff;
+cursor: pointer;
+position: relative;
+padding-left: 35px;
+transition: all 0.3s ease;
+}
+.options .radio_buttons .btn_single input[type="radio"]:checked + label{
+padding: 8px 15px;
+font-size: 16px;
+border-radius: 5px;
+background: var(--dark-blue);
+color: #fff;
+cursor: pointer;
+position: relative;
+padding-left: 35px;
+box-shadow: .4rem .4rem 1rem rgba(0, 0, 0, 0.25);
+transform: scale(1.08);
+}
+.options .radio_buttons .btn_single label::before{
+position: absolute;
+content: '';
+width: 18px;
+height: 18px;
+border-radius: 50%;
+top: 50%;
+transform: translateY(-50%);
+background: #fff;
+left: 10px;
+
+}
+.options .radio_buttons .btn_single input[type="radio"]:checked + label::after{
+    position: absolute;
+    content: '';
+    width:10px;
+    height:10px;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--dark-blue);
+    left: 14px;
+    box-shadow: 0 0 5rem rgba(0, 0, 0, 0.8);
+  
+    }
+
+    .options .comment_box{
+    margin-top: .5rem;
+    max-width: 700px;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 2.5rem;
+}
+.comment_box textarea{
+    width: 100%;
+    height: 100px;
+    border: .5px solid lightgray;
+    outline: none;
+    padding: .5rem 1rem;
+    font-size: 1.2rem;
+    margin-top: .5rem;
+    resize: none;
+    letter-spacing: 1.4px;
+    border-radius: 5px;
+    color: rgb(59, 59, 59);
+
+}
+.comment_box textarea:focus{
+
+    background: #4f87ee48;
+    color: rgb(32, 32, 32);
+}
+
+.servey .servey_box form .submit_btn{
+    width: 200px;
+    padding: 10px 30px;
+    position: absolute;
+    bottom: 2rem;
+    right: 3rem;
+    font-size: 1.2rem;
+    border: none;
+    outline: none;
+    background: linear-gradient(135deg,var(--color-dark-green), var(--color-light-green));
+    border-radius: 5px;
+    box-shadow: .3rem .6rem 1rem rgba(0, 0, 0, 0.2);
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+
+
+
+
+
+    @media (max-width:768px) {
+        .options .radio_buttons{
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+           margin-right: 1rem;
+           flex-direction: column;
+        }
+        .options .comment_box{
+            margin-top: .5rem;
+    
+            width: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            margin-left: 0;
+        }
+        .servey .servey_box form .top_heading{
+            font-size: 1.3rem;
+            margin-left: 0rem;
+        }
+        .servey .servey_box form .top_desc{
+            font-size: 16px;
+            margin-left: 0rem;
+            margin-top: .5rem;
+        }
+        .servey .servey_box form .submit_btn{
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }

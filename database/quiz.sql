@@ -1,0 +1,407 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Nov 09, 2021 at 04:35 PM
+-- Server version: 10.4.20-MariaDB
+-- PHP Version: 8.0.8
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `quiz`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `username`, `password`) VALUES
+(1, 'admin', '111');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `course`
+--
+
+CREATE TABLE `course` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `depart` varchar(255) NOT NULL,
+  `level` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `course`
+--
+
+INSERT INTO `course` (`id`, `name`, `depart`, `level`) VALUES
+(1, 'Java', 'COSC', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `history`
+--
+
+CREATE TABLE `history` (
+  `id` int(11) NOT NULL,
+  `s_id` int(11) NOT NULL,
+  `quizId` int(11) NOT NULL,
+  `tot_questions` int(11) NOT NULL,
+  `scores` int(11) NOT NULL,
+  `correct` int(11) NOT NULL,
+  `wrong` int(11) NOT NULL,
+  `history_status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `history`
+--
+
+INSERT INTO `history` (`id`, `s_id`, `quizId`, `tot_questions`, `scores`, `correct`, `wrong`, `history_status`) VALUES
+(1, 1, 1, 2, 2, 2, 0, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `questions`
+--
+
+CREATE TABLE `questions` (
+  `qid` int(11) NOT NULL,
+  `question` varchar(255) NOT NULL,
+  `quizid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `questions`
+--
+
+INSERT INTO `questions` (`qid`, `question`, `quizid`) VALUES
+(1, 'Who is known as father of Java Programming Language?', 1),
+(2, 'In java control statements break, continue, return, try-catch-finally and assert belongs to?', 1),
+(3, 'Which provides runtime environment for java byte code to be executed?', 1),
+(4, 'What is byte code in Java?', 1),
+(5, 'Which of the following are not Java keyword ?', 1),
+(6, 'Which variables are created when an object is created with the use of the keyword new and destroyed when the object is destroyed?', 2),
+(7, 'Java language was initially called as ________', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `quizlist`
+--
+
+CREATE TABLE `quizlist` (
+  `quiz_id` int(11) NOT NULL,
+  `quiz_title` varchar(255) NOT NULL,
+  `quiz_questions` int(11) NOT NULL,
+  `quiz_right_marks` int(11) NOT NULL,
+  `quiz_wrong_marks` int(11) NOT NULL,
+  `quiz_time` varchar(255) NOT NULL,
+  `status` int(2) NOT NULL,
+  `t_id` int(11) DEFAULT NULL,
+  `quiz_managed` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `quizlist`
+--
+
+INSERT INTO `quizlist` (`quiz_id`, `quiz_title`, `quiz_questions`, `quiz_right_marks`, `quiz_wrong_marks`, `quiz_time`, `status`, `t_id`, `quiz_managed`) VALUES
+(1, 'Java', 5, 10, 5, '15', 1, 1, 1),
+(2, 'Java', 2, 5, 2, '1', 1, 1, 1),
+(3, 'Java', 3, 5, 3, '5', 0, 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `quiz_answer`
+--
+
+CREATE TABLE `quiz_answer` (
+  `qa_id` int(11) NOT NULL,
+  `qid` int(11) NOT NULL,
+  `option_number` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `quiz_answer`
+--
+
+INSERT INTO `quiz_answer` (`qa_id`, `qid`, `option_number`) VALUES
+(1, 1, 1),
+(2, 2, 3),
+(3, 3, 2),
+(4, 4, 1),
+(5, 5, 3),
+(6, 6, 2),
+(7, 7, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `quiz_options`
+--
+
+CREATE TABLE `quiz_options` (
+  `option_id` int(11) NOT NULL,
+  `qid` int(11) NOT NULL,
+  `option` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `quiz_options`
+--
+
+INSERT INTO `quiz_options` (`option_id`, `qid`, `option`) VALUES
+(1, 1, 'James Gosling'),
+(2, 1, 'M. P Java'),
+(3, 1, 'Charel Babbage'),
+(4, 1, 'Blais Pascal'),
+(5, 2, 'Selection statements'),
+(6, 2, 'Loop Statements'),
+(7, 2, 'Transfer statements'),
+(8, 2, 'Pause Statement'),
+(9, 3, 'JDK'),
+(10, 3, 'JVM'),
+(11, 3, 'JRE'),
+(12, 3, 'JAVAC'),
+(13, 4, 'Code generated by a Java compiler'),
+(14, 4, 'Code generated by a Java Virtual Machine'),
+(15, 4, 'Name of Java source code file'),
+(16, 4, 'Block of code written inside a class'),
+(17, 5, 'double'),
+(18, 5, 'switch'),
+(19, 5, 'then'),
+(20, 5, 'instanceof'),
+(21, 6, 'Local variables'),
+(22, 6, 'Instance variables'),
+(23, 6, 'Class Variables'),
+(24, 6, 'Static variables'),
+(25, 7, 'Sumatra'),
+(26, 7, 'J++'),
+(27, 7, 'Oak'),
+(28, 7, 'Pine');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student`
+--
+
+CREATE TABLE `student` (
+  `s_id` int(11) NOT NULL,
+  `s_name` varchar(255) NOT NULL,
+  `s_reg` varchar(255) NOT NULL,
+  `s_username` varchar(255) NOT NULL,
+  `std_mobile` varchar(255) NOT NULL,
+  `scores` int(11) NOT NULL,
+  `std_password` varchar(255) NOT NULL,
+  `t_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `student`
+--
+
+INSERT INTO `student` (`s_id`, `s_name`, `s_reg`, `s_username`, `std_mobile`, `scores`, `std_password`, `t_id`) VALUES
+(1, 'student1', '0001', 'student1', '03000000000', 0, '123', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `teacher`
+--
+
+CREATE TABLE `teacher` (
+  `t_id` int(11) NOT NULL,
+  `t_name` varchar(255) NOT NULL,
+  `t_username` varchar(255) NOT NULL,
+  `t_email` varchar(255) NOT NULL,
+  `t_course` varchar(255) NOT NULL,
+  `t_password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `teacher`
+--
+
+INSERT INTO `teacher` (`t_id`, `t_name`, `t_username`, `t_email`, `t_course`, `t_password`) VALUES
+(1, 'teacher1', 'teacher1', 'teacher1@gmail.com', 'Java', '123');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `course`
+--
+ALTER TABLE `course`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `history`
+--
+ALTER TABLE `history`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `questions`
+--
+ALTER TABLE `questions`
+  ADD PRIMARY KEY (`qid`),
+  ADD KEY `quizid` (`quizid`);
+
+--
+-- Indexes for table `quizlist`
+--
+ALTER TABLE `quizlist`
+  ADD PRIMARY KEY (`quiz_id`),
+  ADD KEY `t_id` (`t_id`);
+
+--
+-- Indexes for table `quiz_answer`
+--
+ALTER TABLE `quiz_answer`
+  ADD PRIMARY KEY (`qa_id`),
+  ADD KEY `quiz_answer_ibfk_1` (`qid`);
+
+--
+-- Indexes for table `quiz_options`
+--
+ALTER TABLE `quiz_options`
+  ADD PRIMARY KEY (`option_id`),
+  ADD KEY `qid` (`qid`);
+
+--
+-- Indexes for table `student`
+--
+ALTER TABLE `student`
+  ADD PRIMARY KEY (`s_id`);
+
+--
+-- Indexes for table `teacher`
+--
+ALTER TABLE `teacher`
+  ADD PRIMARY KEY (`t_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `course`
+--
+ALTER TABLE `course`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `history`
+--
+ALTER TABLE `history`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `questions`
+--
+ALTER TABLE `questions`
+  MODIFY `qid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `quizlist`
+--
+ALTER TABLE `quizlist`
+  MODIFY `quiz_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `quiz_answer`
+--
+ALTER TABLE `quiz_answer`
+  MODIFY `qa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `quiz_options`
+--
+ALTER TABLE `quiz_options`
+  MODIFY `option_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
+-- AUTO_INCREMENT for table `student`
+--
+ALTER TABLE `student`
+  MODIFY `s_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `teacher`
+--
+ALTER TABLE `teacher`
+  MODIFY `t_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `questions`
+--
+ALTER TABLE `questions`
+  ADD CONSTRAINT `questions_ibfk_1` FOREIGN KEY (`quizid`) REFERENCES `quizlist` (`quiz_id`);
+
+--
+-- Constraints for table `quizlist`
+--
+ALTER TABLE `quizlist`
+  ADD CONSTRAINT `quizlist_ibfk_1` FOREIGN KEY (`t_id`) REFERENCES `teacher` (`t_id`);
+
+--
+-- Constraints for table `quiz_answer`
+--
+ALTER TABLE `quiz_answer`
+  ADD CONSTRAINT `quiz_answer_ibfk_1` FOREIGN KEY (`qid`) REFERENCES `quiz_options` (`option_id`);
+
+--
+-- Constraints for table `quiz_options`
+--
+ALTER TABLE `quiz_options`
+  ADD CONSTRAINT `quiz_options_ibfk_1` FOREIGN KEY (`qid`) REFERENCES `questions` (`qid`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
